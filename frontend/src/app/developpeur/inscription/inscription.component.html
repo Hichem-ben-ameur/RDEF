@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-md-12" >
+    <div class="card mt-4" style="width: 60%;margin: 0 auto;">
+      <h4 class="card-header" style="text-align: center;">Formulaire d'inscription</h4>
+      <div class="card-body">
+          <ul>
+            <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group" >
+              <h6><span style="color: red">*</span>Nom:</h6>
+              <input formControlName="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" type="text" name="nom"   class="form-control"   > 
+              <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                <div *ngIf="f.nom.errors.required">Champ obligatoire</div>
+            </div>
+            </div>
+          <div class="form-group" >
+            <h6><span style="color: red">*</span>Prénom:</h6>
+            <input formControlName="prenom" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" type="text" name="prenom"   class="form-control"   > 
+            <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+              <div *ngIf="f.prenom.errors.required">Champ obligatoire</div>
+          </div>
+          </div>
+        <div class="form-group" >
+          <h6><span style="color: red">*</span>Domaine de developpement:</h6>
+          <input formControlName="domaine_developpement" [ngClass]="{ 'is-invalid': submitted && f.domaine_developpement.errors }" type="text" name="domaine_developpement"   class="form-control"   > 
+          <div *ngIf="submitted && f.domaine_developpement.errors" class="invalid-feedback">
+            <div *ngIf="f.domaine_developpement.errors.required">Champ obligatoire</div>
+        </div>
+        </div>
+      <div class="form-group" >
+        <h6><span style="color: red">*</span>Technologies informatique:</h6>
+        <input formControlName="technologies" [ngClass]="{ 'is-invalid': submitted && f.technologies.errors }" type="text" name="technologies"   class="form-control"   > 
+        <div *ngIf="submitted && f.technologies.errors" class="invalid-feedback">
+          <div *ngIf="f.technologies.errors.required">Champ obligatoire</div>
+      </div>
+      </div>
+    <div class="form-group" >
+      <h6><span style="color: red">*</span>Environement de développement:</h6>
+      <input formControlName="environement" [ngClass]="{ 'is-invalid': submitted && f.environement.errors }" type="text" name="environement"   class="form-control"   > 
+      <div *ngIf="submitted && f.environement.errors" class="invalid-feedback">
+        <div *ngIf="f.environement.errors.required">Champ obligatoire</div>
+    </div>
+    </div>
+    
+    <div class="form-group" >
+      <h6><span style="color: red">*</span>Niveau d'étude:</h6>
+      <input formControlName="niveau_etude" [ngClass]="{ 'is-invalid': submitted && f.niveau_etude.errors }" type="text" name="niveau_etude"   class="form-control"  > 
+      <div *ngIf="submitted && f.niveau_etude.errors" class="invalid-feedback">
+        <div *ngIf="f.niveau_etude.errors.required">Champ obligatoire</div>
+    </div>
+    </div>
+    <h6>Expérience:</h6>
+    <!-- grade - option 1 -->
+    <div class="form-check">
+      <input type="radio" formControlName="grade" class="form-check-input" id="grade1" name="grade"  value="Junior" checked>
+      <label class="form-check-label" for="grade1">Junior</label>
+    </div>
+    
+    <!-- grade - option 2 -->
+    <div class="form-check">
+      <input type="radio" formControlName="grade" class="form-check-input" id="grade2" name="grade"  value="Confirme">
+      <label class="form-check-label" for="grade2">Confirmé</label>
+    </div>
+    
+    <!-- grade - option 3 -->
+    <div class="form-check">
+      <input type="radio" formControlName="grade" class="form-check-input" id="grade3" name="grade"  value="Expert">
+      <label class="form-check-label" for="grade3">Expert</label>
+    </div>
+    <br>
+    <div class="form-group" >
+      <h6><span style="color: red">*</span>Adresse mail:</h6>
+      <input formControlName="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" type="text" name="mail"   class="form-control"   > 
+      <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+        <div *ngIf="f.mail.errors.required">Champ obligatoire</div>
+    </div>
+    </div>
+    <div class="form-group" >
+      <h6><span style="color: red">*</span>Mot de passe:</h6>
+      <input formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="password" name="password"   class="form-control"   > 
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Champ obligatoire, au mois 7 </div>
+    </div>
+    </div>
+    <button   class="btn btn-success btn-sm" style="float: right;">Enregistrer</button>
+   <span style="font-size: 15px;text-decoration: underline;"> <span style="color: red;">*</span> Champs obligatoires</span>
+  </form>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="row" style="margin-top: 10px;">
+  <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+          <form (submit)="submitDevelopper()">
+              <div class="form-group">
+                  <input type="text" name="nom"  placeholder="Nom" class="form-control"  [(ngModel)]="developper.nom"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="prenom"  placeholder="Prénom" class="form-control" [(ngModel)]="developper.prenom"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="domaine_developpement"  placeholder="Domaine de developpement" class="form-control" [(ngModel)]="developper.domaine_developpement"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="niveau_etude"  placeholder="Niveau d'étude" class="form-control" [(ngModel)]="developper.niveau_etude"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="technologies"  placeholder="Technologies" class="form-control" [(ngModel)]="developper.technologies"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="environement"  placeholder="Environnement de développement" class="form-control" [(ngModel)]="developper.environement" > 
+              </div>
+              <div class="form-group">
+                  <input type="mail" name="mail"  placeholder="Mail" class="form-control" [(ngModel)]="developper.mail"> 
+              </div>
+              <div class="form-group">
+                  <input type="password" name="password"  placeholder="Mot de passe" class="form-control" [(ngModel)]="developper.password"> 
+              </div>
+
+                 <button class="btn btn-success btn-block">Inscription</button>
+
+          </form>
+      </div>
+
+  </div>
+</div>
+-->

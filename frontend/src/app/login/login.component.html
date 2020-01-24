@@ -1,0 +1,127 @@
+﻿<style>
+
+
+body {
+	background: #eee !important;	
+}
+
+.wrapper {	
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
+
+  .form-signin-heading,
+	.checkbox {
+        
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+}
+.separator::before {
+    margin-right: .25em;
+}
+.separator::after {
+    margin-left: .25em;
+}
+</style>
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="wrapper" *ngIf="type==null">
+        <div  class="form-signin" > 
+          <h2 class="form-signin-heading" style="text-align: center;">Connecter en tant que :</h2>
+          <br>
+          <div class="form-group">
+          
+        <button class="btn  btn-primary btn-block" (click)="setType('dev')">Développeur</button>  
+        </div>
+        <div class="form-group">
+            <div class="separator">OU</div>
+        </div>
+        
+          <div class="form-group">
+          
+          <button class="btn  btn-primary btn-block" (click)="setType('visiteur')">Entreprise/Particulier</button>   
+        </div>
+    
+
+        </div>
+      </div>
+    <div class="card" *ngIf="type!=null">
+        <h4 class="card-header" *ngIf="type=='dev'">Développeur authentification <button (click)="changerType()" class="btn btn-warning btn-sm" style="float: right;">Changer</button></h4>
+        <h4 class="card-header" *ngIf="type=='visiteur'">Entreprise authentification <button (click)="changerType()" class="btn btn-warning btn-sm" style="float: right;">Changer</button></h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Adresse mail</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Champ obligatoire</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Champ obligatoire</div>
+                    </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Se connecter
+                </button>
+                <br>
+                <div style="text-align: center;">
+                  <a href="visiteur/inscription" class="text-success" *ngIf="type=='visiteur'">Vous n'avez pas un compte ?</a>
+                </div> 
+                <div style="text-align: center;">
+                  <a href="developpeur/inscription" class="text-success" *ngIf="type=='dev'">Vous n'avez pas un compte ?</a>
+                </div> 
+               <!-- <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>-->
+               <div *ngIf="authentification=='Unauthorized'" class="alert alert-danger mt-3 mb-0">Adresse mail ou mot de passe incorrect</div>
+            </form>
+        </div>
+    </div>
+</div>

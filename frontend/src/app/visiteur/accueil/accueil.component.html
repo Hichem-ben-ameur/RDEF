@@ -1,0 +1,49 @@
+<div class="card mt-4">
+  <h4 class="card-header">Recherchez les développeurs qui correspondant à vos besoins</h4>
+  <div class="card-body">
+      
+      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+<div class="row">
+      <div class="col-md-9">
+  <div class="card " *ngFor="let developper of developpers; let i=index" style="margin-bottom: 10px;">
+    <div class="card-body">
+      <h5 class="card-title">{{developper.nom}} {{developper.prenom}} 
+        <span  style="font-size: 15px;float: right;"><i class="fas fa-code"></i> {{developper.domaine_developpement}} </span>
+      </h5>
+
+        <h6>Technologies</h6>
+        <p class="card-text">{{developper.technologies}}</p>
+        <h6>Environement de développement</h6>
+        <p class="card-text">{{developper.environement}}</p>
+        <h6> Niveau d'étude:</h6>
+        <p class="card-text">{{developper.niveau_etude}}</p>
+
+
+      <span *ngFor="let check_notification of notification_profils_check; let kk=index" >
+      <button *ngIf="i==kk&&check_notification==false" (click)="envoyerNotification(developper._id)" class="btn btn-primary" style="float: right;" data-toggle="tooltip" data-placement="top" title="Envoyez une notification à l'entreprise"><i class="fas fa-envelope"></i></button>
+      <button *ngIf="i==kk&&check_notification==true"  class="btn btn-success"  style="float: right;" data-container="body" data-toggle="popover" data-placement="top" data-content="Envoyez avez déjà envoyé une notification" disabled><i class="fas fa-envelope-open"></i></button>
+    </span>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-3">
+<div class="card bg-light mb-3" style="max-width: 18rem;overflow-y:scroll;height: 400px;">
+  <div class="card-header">Notification</div>
+  <div class="card-body">
+   
+    
+    <div *ngFor="let developper of developpeurs_notification; let j=index" class="alert alert-success mt-3 mb-0">
+   <span *ngFor="let projet of projets_notification; let k=index">
+      <span *ngIf="j==k" style="font-size:small;">{{developper.nom}} {{developper.prenom}} est interessée par votre projet {{projet.nom_projet}}, contactez le</span>
+    </span></div>
+    <div  class="alert alert-info mt-3 mb-0"><span style="font-size:small;">Bienvenue dans RDEF</span></div>
+   
+  </div>
+</div>
+
+
+</div>
+</div>
+  </div>
+</div>

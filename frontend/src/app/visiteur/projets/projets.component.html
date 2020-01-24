@@ -1,0 +1,125 @@
+<div class="card mt-4">
+  <h4 class="card-header">Vos projets <span style="float: right;"><button *ngIf="insertProjetbool==false" (click)="nvProjet()" class="btn btn-primary">Nouveau projet  <i class="fas fa-plus"></i></button></span></h4>
+  <div class="card-body">
+      
+      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+      <div class="row" *ngIf="insertProjetbool==true">
+        <div class="col-md-12">
+          <div *ngIf="insertProjetError==true" class="alert alert-danger mt-3 mb-0">Vérifiez les champs avant de valider</div>
+    <div class="card "  style="margin-bottom: 10px;">
+      <div class="card-body">
+        <button (click)="insertProjet()" class="btn btn-success" style="color: white;float: right;">Enregistrer <i class="fas fa-check"></i></button>
+        <ul  style="width: 80%;">
+          <form (submit)="submitProjet()">
+          <div class="form-group" >
+            <h6>Nom du projet:</h6>
+            <input type="text"  name="nom_projet"   class="form-control"  [(ngModel)]="selectProject.nom_projet" > 
+        </div>
+        <div class="form-group" >
+          <h6>Adresse:</h6>
+          <input type="text" name="adresse"   class="form-control"  [(ngModel)]="selectProject.adresse" > 
+      </div>
+      <div class="form-group" >
+        <h6>Détails:</h6>
+        <input type="text" name="details"   class="form-control"  [(ngModel)]="selectProject.details" > 
+    </div>
+    <div class="form-group" >
+      <h6>Recherche:</h6>
+      <input type="text" name="recherche"   class="form-control"  [(ngModel)]="selectProject.recherche" > 
+  </div>
+        </form>
+        </ul>
+  
+  
+      </div>
+    </div>
+  
+  </div>
+      </div>
+<div class="row" *ngIf="insertProjetbool==false">
+      <div class="col-md-12">
+        <span *ngIf="!selectProject">
+  <div class="card "  *ngFor="let projet of projets; let i=index" style="margin-bottom: 10px;" >
+    <div class="card-body" >
+      <button (click)="modifierProjet(projet)" class="btn btn-warning" style="color: white;float: right;"><i class="fas fa-cogs"></i></button>
+      <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#supp'+i" style="color: white;float: right;margin-right:5px;"><i class="fas fa-trash-alt"></i></button>
+      
+      <!-- Modal -->
+<div class="modal fade" [attr.id]="'supp'+i" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Suppression</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        vous voulez supprimer le projet <span style="color:dodgerblue">{{projet.nom_projet}}</span> ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+        <button (click)="supprimerProjet(projet._id)" type="button" class="btn btn-danger">Oui</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      <ul  style="width: 80%;">
+        <div *ngIf="message" class="alert alert-success mt-3 mb-0">Enregistrement réussi</div>
+        <form (submit)="submitProjet()">
+        <div class="form-group" >
+          <h6>Nom du projet:</h6>
+          <input type="text" id="nom_projet{{i}}" name="nom_projet"   class="form-control"  [(ngModel)]="projet.nom_projet" readonly="true"> 
+      </div>
+      <div class="form-group" >
+        <h6>Adresse:</h6>
+        <input type="text" name="adresse"   class="form-control"  [(ngModel)]="projet.adresse" [readonly]="isReadOnly"> 
+    </div>
+    <div class="form-group" >
+      <h6>Détails:</h6>
+      <input type="text" name="details"   class="form-control"  [(ngModel)]="projet.details" [readonly]="isReadOnly"> 
+  </div>
+  <div class="form-group" >
+    <h6>Recherche:</h6>
+    <input type="text" name="recherche"   class="form-control"  [(ngModel)]="projet.recherche" [readonly]="isReadOnly"> 
+</div>
+      </form>
+      </ul>
+
+
+    </div>
+  </div></span>
+  <div class="card " *ngIf="selectProject" style="margin-bottom: 10px;">
+    <div class="card-body">
+      <button (click)="enregistrerProjet()" class="btn btn-success" style="color: white;float: right;">Enregistrer <i class="fas fa-check"></i></button>
+      <ul  style="width: 80%;">
+        <form (submit)="submitProjet()">
+        <div class="form-group" >
+          <h6>Nom du projet:</h6>
+          <input type="text"  name="nom_projet"   class="form-control"  [(ngModel)]="selectProject.nom_projet" > 
+      </div>
+      <div class="form-group" >
+        <h6>Adresse:</h6>
+        <input type="text" name="adresse"   class="form-control"  [(ngModel)]="selectProject.adresse" > 
+    </div>
+    <div class="form-group" >
+      <h6>Détails:</h6>
+      <input type="text" name="details"   class="form-control"  [(ngModel)]="selectProject.details" > 
+  </div>
+  <div class="form-group" >
+    <h6>Recherche:</h6>
+    <input type="text" name="recherche"   class="form-control"  [(ngModel)]="selectProject.recherche" > 
+</div>
+      </form>
+      </ul>
+
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+  </div>
+</div>

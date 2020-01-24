@@ -1,0 +1,94 @@
+<div class="card mt-4">
+  <h4 class="card-header">Votre profile <button *ngIf="isReadOnly==true" (click)="modifierProfile()" class="btn btn-warning btn-sm" style="float: right;">Modifier</button>
+    <button *ngIf="isReadOnly==false" (click)="enregistrer()" class="btn btn-success btn-sm" style="float: right;">Enregistrer</button>
+  </h4>
+  <div class="card-body">
+    
+      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+      <ul *ngIf="dev" style="width: 80%;">
+        <div *ngIf="message" class="alert alert-success mt-3 mb-0">Enregistrement réussi</div>
+        <form (submit)="submitDevelopper()">
+        <div class="form-group" >
+          <h6>Nom:</h6>
+          <input type="text" name="nom"   class="form-control"  [(ngModel)]="dev.nom" [readonly]="isReadOnly"> 
+      </div>
+      <div class="form-group" >
+        <h6>Prénom:</h6>
+        <input type="text" name="prenom"   class="form-control"  [(ngModel)]="dev.prenom" [readonly]="isReadOnly"> 
+    </div>
+    <div class="form-group" >
+      <h6>Domaine de developpement:</h6>
+      <input type="text" name="domaine_developpement"   class="form-control"  [(ngModel)]="dev.domaine_developpement" [readonly]="isReadOnly"> 
+  </div>
+  <div class="form-group" >
+    <h6>Technologies informatique:</h6>
+    <input type="text" name="technologies"   class="form-control"  [(ngModel)]="dev.technologies" [readonly]="isReadOnly"> 
+</div>
+<div class="form-group" >
+  <h6>Environement de développement:</h6>
+  <input type="text" name="environement"   class="form-control"  [(ngModel)]="dev.environement" [readonly]="isReadOnly"> 
+</div>
+
+<div class="form-group" >
+  <h6>Niveau d'étude:</h6>
+  <input type="text" name="niveau_etude"   class="form-control"  [(ngModel)]="dev.niveau_etude" [readonly]="isReadOnly"> 
+</div>
+<h6>Expérience:</h6>
+<!-- grade - option 1 -->
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="grade1" name="grade" [(ngModel)]="dev.grade" value="Junior" >
+  <label class="form-check-label" for="grade1">Junior</label>
+</div>
+
+<!-- grade - option 2 -->
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="grade2" name="grade" [(ngModel)]="dev.grade" value="Confirme">
+  <label class="form-check-label" for="grade2">Confirmé</label>
+</div>
+
+<!-- grade - option 3 -->
+<div class="form-check">
+  <input type="radio" class="form-check-input" id="grade3" name="grade" [(ngModel)]="dev.grade" value="Expert">
+  <label class="form-check-label" for="grade3">Expert</label>
+</div>
+      </form>
+      </ul>
+  </div>
+</div>
+<!--<div class="row" style="margin-top: 10px;">
+  <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+          <form (submit)="submitDevelopper()">
+              <div class="form-group">
+                  <input type="text" name="nom"  placeholder="Nom" class="form-control"  [(ngModel)]="developper.nom"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="prenom"  placeholder="Prénom" class="form-control" [(ngModel)]="developper.prenom"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="domaine_developpement"  placeholder="Domaine de developpement" class="form-control" [(ngModel)]="developper.domaine_developpement"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="niveau_etude"  placeholder="Niveau d'étude" class="form-control" [(ngModel)]="developper.niveau_etude"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="technologies"  placeholder="Technologies" class="form-control" [(ngModel)]="developper.technologies"> 
+              </div>
+              <div class="form-group">
+                  <input type="text" name="environement"  placeholder="Environnement de développement" class="form-control" [(ngModel)]="developper.environement" > 
+              </div>
+              <div class="form-group">
+                  <input type="mail" name="mail"  placeholder="Mail" class="form-control" [(ngModel)]="developper.mail"> 
+              </div>
+              <div class="form-group">
+                  <input type="password" name="password"  placeholder="Mot de passe" class="form-control" [(ngModel)]="developper.password"> 
+              </div>
+
+                 <button class="btn btn-success btn-block">Inscription</button>
+
+          </form>
+      </div>
+
+  </div>
+</div>
+-->

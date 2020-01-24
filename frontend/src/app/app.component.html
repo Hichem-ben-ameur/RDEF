@@ -1,0 +1,26 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <a class="navbar-brand" href="#">RDEF</a>
+    <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link" routerLink="/developpeur" *ngIf="currentUser.type=='dev'">Accueil</a>
+        <a class="nav-item nav-link" routerLink="/visiteur" *ngIf="currentUser.type=='visiteur'">Accueil</a>
+        <a class="nav-item nav-link" routerLink="developpeur/profil" *ngIf="currentUser.type=='dev'">Profil</a>
+        <a class="nav-item nav-link" routerLink="visiteur/projets" *ngIf="currentUser.type=='visiteur'">Projets</a>
+        <a class="nav-item nav-link" (click)="logout()">Déconnexion</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+    <p>
+        <a href="#" target="_top">RDEF - Le site qui vous rapproche du monde professionnel</a>
+    </p>
+    <p>
+       
+    </p>
+</div>

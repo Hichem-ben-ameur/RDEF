@@ -1,0 +1,46 @@
+<div class="card mt-4">
+  <h4 class="card-header">Recherchez les projets qui correspondant à votre profil</h4>
+  <div class="card-body">
+      
+      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+<div class="row">
+      <div class="col-md-9">
+  <div class="card " *ngFor="let projet of projets; let i=index" style="margin-bottom: 10px;">
+    <div class="card-body">
+      <h5 class="card-title">{{projet.nom_projet}}</h5>
+      <span *ngIf="projet.adresse" style="font-size: 15px;"><i class="fas fa-map-marker-alt"></i>  {{projet.adresse}}</span>
+      <br>
+      <br>
+      <span *ngFor="let visiteur of visiteurs; let j=index" >
+      <h6 *ngIf="i==j&&visiteur.type=='entreprise'">Entreprise:</h6><a  *ngIf="i==j&&visiteur.type=='entreprise'" style="color:deepskyblue;">{{visiteur.nom_entreprise}}</a></span>
+      <span *ngFor="let visiteur of visiteurs; let j=index" >
+        <h6 *ngIf="i==j&&visiteur.type!='entreprise'">Particulier:</h6><a  *ngIf="i==j&&visiteur.type!='entreprise'" style="color:deepskyblue;">{{visiteur.nom}} {{visiteur.prenom}}</a></span>
+
+
+     <h6>Détails:</h6>
+      <p class="card-text">{{projet.details}}</p>
+      <h6>Recherche:</h6>
+      <p class="card-text">{{projet.recherche}}</p>
+      <span *ngFor="let check_notification of notification_projets_check; let kk=index" >
+      <button *ngIf="i==kk&&check_notification==false" (click)="envoyerNotification(projet._id,projet.id_auteur)" class="btn btn-primary" style="float: right;" data-toggle="tooltip" data-placement="top" title="Envoyez une notification à l'entreprise"><i class="fas fa-envelope"></i></button>
+      <button *ngIf="i==kk&&check_notification==true"  class="btn btn-success"  style="float: right;" data-container="body" data-toggle="popover" data-placement="top" data-content="Envoyez avez déjà envoyé une notification" disabled><i class="fas fa-envelope-open"></i></button>
+    </span>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-3">
+<div class="card bg-light mb-3" style="max-width: 18rem;overflow-y:scroll;height: 400px;">
+  <div class="card-header">Notification</div>
+  <div class="card-body">
+      
+    <div *ngFor="let visiteur of visiteurs_notification; let j=index" class="alert alert-success mt-3 mb-0"><span style="font-size:small;">{{visiteur.nom_entreprise}} est interessée par votre profil, contactez la</span></div>
+    <div  class="alert alert-info mt-3 mb-0"><span style="font-size:small;">Bienvenue dans RDEF</span></div>
+  </div>
+</div>
+
+
+</div>
+</div>
+  </div>
+</div>
